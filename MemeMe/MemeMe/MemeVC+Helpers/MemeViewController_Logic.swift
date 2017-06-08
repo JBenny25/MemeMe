@@ -71,13 +71,14 @@ extension MemeViewController {
                 return
             }
             self.save(withImage)
+            self.dismiss(animated: true, completion: nil)
         }
         present(activityVC, animated: true, completion: nil)
     }
     
     func save(_ memeImage : UIImage) {
-        // since variable is not used anywhere, keeping it _ for version 1.0
-        let _ = Meme(topQuote: topTextField.text!, bottomQuote: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memeImage)
+        let meme = Meme(topQuote: topTextField.text!, bottomQuote: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memeImage)
+        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
     }
 }
 

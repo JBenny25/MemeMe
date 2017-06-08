@@ -93,6 +93,7 @@ class MemeViewController: UIViewController {
         memeImageView.image = nil
         topTextField.text = kTopFieldText
         bottomTextField.text = kBottomFieldText
-    }    
+        dismiss(animated: true, completion: nil)
+    }
 }
 
