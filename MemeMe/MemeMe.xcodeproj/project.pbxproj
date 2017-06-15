@@ -115,8 +115,8 @@
 			children = (
 				5F621CD41EBA1DE3002FDC66 /* AppDelegate.swift */,
 				5F8B79D91ECA3B3500B310F3 /* MemeVC+Helpers */,
-				5FC141751ED1675300E8CC57 /* SentMemesTableViewController.swift */,
-				5FC141771ED1677800E8CC57 /* SentMemesCollectionViewController.swift */,
+				5F71C10B1EF2AA7000AB1706 /* MemeDetailVC */,
+				5F71C10A1EF2A9E300AB1706 /* MemeList */,
 				5FFB1F031EC1E75700E02BEF /* UIAlertController_Custom.swift */,
 				5F621CD81EBA1DE3002FDC66 /* Main.storyboard */,
 				5F621CDB1EBA1DE3002FDC66 /* Assets.xcassets */,
@@ -144,6 +144,23 @@
 			path = MemeMeUITests;
 			sourceTree = "<group>";
 		};
+		5F71C10A1EF2A9E300AB1706 /* MemeList */ = {
+			isa = PBXGroup;
+			children = (
+				5FC141751ED1675300E8CC57 /* SentMemesTableViewController.swift */,
+				5FC141771ED1677800E8CC57 /* SentMemesCollectionViewController.swift */,
+			);
+			name = MemeList;
+			sourceTree = "<group>";
+		};
+		5F71C10B1EF2AA7000AB1706 /* MemeDetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				5FCC677C1EE6DC6A0037E1D7 /* MemeDetailViewController.swift */,
+			);
+			name = MemeDetailVC;
+			sourceTree = "<group>";
+		};
 		5F8B79D91ECA3B3500B310F3 /* MemeVC+Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +169,6 @@
 				5F8B79DC1ECA4F1F00B310F3 /* MemeViewController_UIImagePickerControllerDelegate.swift */,
 				5F8B79DD1ECA4F1F00B310F3 /* MemeViewController_UITextFieldDelegate.swift */,
 				5F8B79DE1ECA4F1F00B310F3 /* MemeViewController.swift */,
-				5FCC677C1EE6DC6A0037E1D7 /* MemeDetailViewController.swift */,
 			);
 			name = "MemeVC+Helpers";
 			sourceTree = "<group>";
