@@ -90,9 +90,6 @@ class MemeViewController: UIViewController {
     }
     
     @IBAction func resetEditor(_ sender: Any) {
-        memeImageView.image = nil
-        topTextField.text = kTopFieldText
-        bottomTextField.text = kBottomFieldText
         dismiss(animated: true, completion: nil)
     }
 }

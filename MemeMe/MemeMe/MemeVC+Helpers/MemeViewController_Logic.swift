@@ -28,22 +28,13 @@ extension MemeViewController {
     }
     
     func valideteShareButton() {
-        if memeImageView.image != nil,
-            (topTextField.text != kTopFieldText && topTextField.text != ""),
-            (bottomTextField.text != kBottomFieldText && bottomTextField.text != "") {
-            shareButton.isEnabled = true
-        } else {
-            shareButton.isEnabled = false
-        }
+        shareButton.isEnabled = hasImage() && hasValidTopQuote() && hasValidBottomQuote()
     }
     
-    
-    func setup(_ textField : UITextField) {
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = .center
-        textField.delegate = self
+    func hasImage() -> Bool {
+        return memeImageView.image != nil
     }
-    
+        
     func hideToolBars(_ shouldHide : Bool) {
         bottomToolbar.isHidden = shouldHide
         navBar.isHidden = shouldHide
@@ -65,14 +56,18 @@ extension MemeViewController {
         
         let activityVC = UIActivityViewController(activityItems: [withImage], applicationActivities: nil)
         activityVC.completionWithItemsHandler = {(activityType, completed, returnedItems:[Any]?, error: Error?) in
+            
             if (!completed) {
-                let errorMessage = error != nil ? error!.localizedDescription : Alerts.ShareFailedmessage
-                UIAlertController.showAlert(Alerts.ShareFailed, message: errorMessage, view: self, handler: nil)
+                if let error = error {
+                    UIAlertController.showAlert(Alerts.ShareFailed, message: error.localizedDescription, view: self, handler: nil)
+                }
                 return
             }
+            
             self.save(withImage)
             self.dismiss(animated: true, completion: nil)
         }
+        
         present(activityVC, animated: true, completion: nil)
     }
     

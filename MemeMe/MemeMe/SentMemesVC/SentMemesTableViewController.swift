@@ -8,18 +8,19 @@
 
 import UIKit
 
+//MARK: TableView Cell
 class SentMemeTableViewCell : UITableViewCell {
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var memeDetailLabel: UILabel!
 }
 
+//MARK: TableView Controller
 class SentMemesTableViewController: UITableViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -29,6 +30,7 @@ class SentMemesTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    //MARK: TableView Datasource
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
@@ -47,10 +49,12 @@ class SentMemesTableViewController: UITableViewController {
         return cell
     }
     
+    //MARK: TableView Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let image = appDelegate.memes[indexPath.row].memedImage
         self.performSegue(withIdentifier: "showTableDetail", sender: image)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showTableDetail" {

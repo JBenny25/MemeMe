@@ -8,10 +8,12 @@
 
 import UIKit
 
+//MARK: CollectionView Cell
 class SentMemeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
 }
 
+//MARK: CollectionView Controller
 class SentMemesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
@@ -28,10 +30,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         flowLayout?.invalidateLayout()
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return appDelegate.memes.count
-    }
-    
+    //MARK: CollectionView Delegate FlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let dimension = (view.frame.size.width - (2 * space)) / 3.0
         return CGSize(width: dimension, height: dimension)
@@ -45,6 +44,12 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         return space
     }
     
+    //MARK: CollectionView Datasource
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return appDelegate.memes.count
+    }
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memeCollectionViewCell", for: indexPath) as! SentMemeCollectionViewCell
         
@@ -54,6 +59,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         
     }
     
+    //MARK: CollectionView Delegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let image = appDelegate.memes[indexPath.row].memedImage
         performSegue(withIdentifier: "showCollectionDetail", sender: image)

@@ -26,11 +26,11 @@ extension MemeViewController : UIImagePickerControllerDelegate, UINavigationCont
     
     // MARK: Picker Selection
     
-    func presentPicker(_ withSource : UIImagePickerControllerSourceType) -> Bool {
-        if UIImagePickerController.isSourceTypeAvailable(withSource) {
+    func presentPicker(_ source : UIImagePickerControllerSourceType) -> Bool {
+        if UIImagePickerController.isSourceTypeAvailable(source) {
             let picker = UIImagePickerController()
             picker.delegate = self
-            picker.sourceType = withSource
+            picker.sourceType = source
             present(picker, animated: true, completion: nil)
             return true
         }
