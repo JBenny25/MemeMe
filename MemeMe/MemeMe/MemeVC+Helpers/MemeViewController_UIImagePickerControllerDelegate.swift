@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension MemeViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MemeViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
     
     // MARK: UIImagePickerControllerDelegate Implementation
     
@@ -35,5 +35,12 @@ extension MemeViewController : UIImagePickerControllerDelegate, UINavigationCont
             return true
         }
         return false
+    }
+    
+    //Adding pinch to zoom effect on image view
+    
+    //MARK: UIScrollViewDelegate Implementation
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return memeImageView
     }
 }

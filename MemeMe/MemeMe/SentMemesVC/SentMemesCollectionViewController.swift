@@ -17,13 +17,25 @@ class SentMemeCollectionViewCell: UICollectionViewCell {
 class SentMemesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    let space:CGFloat = 3.0
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var cellSize = CGSize(width: 100, height: 100)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.dataSource = self
-        collectionView?.delegate = self
+        calculateCellSize()
+    }
+    
+    func calculateCellSize() {
+        let maxVerticalCells = self.view.bounds.height/100
+        let maxHorizontalCells = self.view.bounds.width/100
+        let maxCellWidthVertical = self.view.bounds.height/maxVerticalCells
+        let maxCellWidthHorizontal = self.view.bounds.width/maxHorizontalCells
+        let size = min(maxCellWidthVertical, maxCellWidthHorizontal)
+        cellSize = CGSize(width: size, height: size)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView?.reloadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -32,16 +44,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     
     //MARK: CollectionView Delegate FlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-        return CGSize(width: dimension, height: dimension)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return space
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return space
+        return cellSize
     }
     
     //MARK: CollectionView Datasource
